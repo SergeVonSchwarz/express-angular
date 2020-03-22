@@ -1,0 +1,22 @@
+<nav>
+  <div class="nav-wrapper">
+    <a routerLink="/" class="brand-logo">Quiz</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li routerLinkActive="active">
+        <!--<a routerLink="/login">Login</a>-->
+        <a class="modal-trigger" href="#modal1" (click)="modalLogin()">Login</a>
+      </li>
+      <li routerLinkActive="active">
+        <!--<a routerLink="/register">Register</a>-->
+        <a class="modal-trigger" href="#modal1" (click)="modalRegister()">Register</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<app-modal *ngIf="selectModalComponent"><app-login-page></app-login-page></app-modal>
+<app-modal *ngIf="!selectModalComponent"><app-register-page></app-register-page></app-modal>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
