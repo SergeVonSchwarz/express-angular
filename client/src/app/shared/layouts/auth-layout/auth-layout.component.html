@@ -14,8 +14,8 @@
   </div>
 </nav>
 
-<app-modal *ngIf="selectModalComponent"><app-login-page></app-login-page></app-modal>
-<app-modal *ngIf="!selectModalComponent"><app-register-page></app-register-page></app-modal>
+<app-modal *ngIf="selectAuthComponent"><app-login-page></app-login-page></app-modal>
+<app-modal *ngIf="!selectAuthComponent"><app-register-page></app-register-page></app-modal>
 
 <div class="container">
   <router-outlet></router-outlet>

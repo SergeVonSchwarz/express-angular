@@ -7,6 +7,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {ModalComponent} from './modal/modal.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,8 @@ import {ModalComponent} from './modal/modal.component';
     ModalComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule
   ],

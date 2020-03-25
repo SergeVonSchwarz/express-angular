@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AuthLayoutComponent implements OnInit {
 
-  selectModalComponent: boolean = true;
+  selectAuthComponent: boolean = true;
 
   constructor() { }
 
@@ -15,10 +15,10 @@ export class AuthLayoutComponent implements OnInit {
   }
 
   modalLogin() {
-   this.selectModalComponent = true;
+   this.selectAuthComponent = true;
   }
 
   modalRegister() {
-   this.selectModalComponent = false;
+   this.selectAuthComponent = false;
   }
 }
