@@ -25,4 +25,8 @@ export class ModalComponent implements OnInit, AfterViewInit {
     this.modal.open();
   }
 
+  onModalClose() {
+    this.modal.close();
+  }
+
 }

@@ -7,18 +7,18 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AuthLayoutComponent implements OnInit {
 
-  selectAuthComponent: boolean = true;
+  /*selectAuthComponent: boolean = true;*/
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  modalLogin() {
+  /*modalLogin() {
    this.selectAuthComponent = true;
   }
 
   modalRegister() {
    this.selectAuthComponent = false;
-  }
+  }*/
 }
