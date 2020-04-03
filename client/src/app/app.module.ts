@@ -9,6 +9,8 @@ import {LoginPageComponent} from './login-page/login-page.component';
 import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {ModalComponent} from './modal/modal.component';
+import { ResultsPageComponent } from './results-page/results-page.component';
+import { QuizPageComponent } from './quiz-page/quiz-page.component';
 
 
 
@@ -18,7 +20,9 @@ import {ModalComponent} from './modal/modal.component';
     LoginPageComponent,
     AuthLayoutComponent,
     RegisterPageComponent,
-    ModalComponent
+    ModalComponent,
+    ResultsPageComponent,
+    QuizPageComponent
   ],
   imports: [
     FormsModule,
