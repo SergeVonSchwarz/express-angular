@@ -5,6 +5,7 @@ import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.comp
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {ResultsPageComponent} from './results-page/results-page.component';
 import {QuizPageComponent} from './quiz-page/quiz-page.component';
+import {AuthGuard} from './shared/classes/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
       {path: 'login', component: LoginPageComponent},
       {path: 'register', component: RegisterPageComponent},
       {path: 'results', component: ResultsPageComponent},
-      {path: 'quiz', component: QuizPageComponent}
+      {path: 'quiz', component: QuizPageComponent, canActivate: [AuthGuard]}
     ]
   }
 ];

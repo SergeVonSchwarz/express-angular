@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
@@ -9,9 +9,9 @@ import {LoginPageComponent} from './login-page/login-page.component';
 import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {ModalComponent} from './modal/modal.component';
-import { ResultsPageComponent } from './results-page/results-page.component';
-import { QuizPageComponent } from './quiz-page/quiz-page.component';
-
+import {ResultsPageComponent} from './results-page/results-page.component';
+import {QuizPageComponent} from './quiz-page/quiz-page.component';
+import {TokenInterceptor} from './shared/classes/token.interceptor';
 
 
 @NgModule({
@@ -31,7 +31,13 @@ import { QuizPageComponent } from './quiz-page/quiz-page.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenInterceptor
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
