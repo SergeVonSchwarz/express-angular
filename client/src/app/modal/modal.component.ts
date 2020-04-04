@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {MaterialInstance, MaterialService} from '../shared/services/classes/material.service';
+import {MaterialInstance, MaterialService} from '../shared/classes/material.service';
 
 @Component({
   selector: 'app-modal',
