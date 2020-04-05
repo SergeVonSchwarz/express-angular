@@ -32,6 +32,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         MaterialService.toast('You can enter');
       } else if(params['accessDenied']) {
         MaterialService.toast('You must auth');
+      } else if(params['sessionFailed']) {
+        MaterialService.toast('You must login');
       }
     });
   }
