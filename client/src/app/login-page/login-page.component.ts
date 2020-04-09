@@ -31,9 +31,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       if(params['registered']) {
         MaterialService.toast('You can enter');
       } else if(params['accessDenied']) {
-        MaterialService.toast('You must auth');
+        MaterialService.toast('You should auth');
       } else if(params['sessionFailed']) {
-        MaterialService.toast('You must login');
+        MaterialService.toast('You should login');
       }
     });
   }
@@ -49,7 +49,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
     this.aSub = this.auth.login(this.form.value)
       .subscribe(
-        () => this.router.navigate(['/']),
+        () => this.router.navigate(['/quiz']),
         error => {
           MaterialService.toast(error.error.message);
           this.form.enable();
