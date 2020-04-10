@@ -12,6 +12,7 @@ import {ModalComponent} from './modal/modal.component';
 import {ResultsPageComponent} from './results-page/results-page.component';
 import {QuizPageComponent} from './quiz-page/quiz-page.component';
 import {TokenInterceptor} from './shared/classes/token.interceptor';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {TokenInterceptor} from './shared/classes/token.interceptor';
     RegisterPageComponent,
     ModalComponent,
     ResultsPageComponent,
-    QuizPageComponent
+    QuizPageComponent,
+    LoaderComponent
   ],
   imports: [
     FormsModule,

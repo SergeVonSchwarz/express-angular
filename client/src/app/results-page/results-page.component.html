@@ -1,3 +1,14 @@
-<p>
-  results-page works!
-</p>
+<div class="row" *ngIf="!loading">
+  <div class="col s12">
+    <h1>Answers</h1>
+    <ul>
+      <li
+        *ngFor="let answer of answers"
+      >
+        {{answer.answers}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<app-loader *ngIf="loading"></app-loader>
