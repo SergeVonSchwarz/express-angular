@@ -1,5 +1,11 @@
-<div class="row" *ngIf="!loading">
-  <div class="col s12">
+<div
+  class="row"
+  *ngIf="answers$ | async as answers; else loader"
+>
+  <div
+    class="col s12"
+    *ngIf="answers.length !== 0; else empty"
+  >
     <h1>Answers</h1>
     <ul>
       <li
@@ -11,4 +17,10 @@
   </div>
 </div>
 
-<app-loader *ngIf="loading"></app-loader>
+<ng-template #loader>
+  <app-loader ></app-loader>
+</ng-template>
+
+<ng-template #empty>
+  <div class="center">No answers!</div>
+</ng-template>

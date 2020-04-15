@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {QuizService} from '../shared/services/quiz.service';
 import {Answer} from '../shared/interfaces';
+import {Observable} from 'rxjs/index';
 
 @Component({
   selector: 'app-results-page',
@@ -9,18 +10,12 @@ import {Answer} from '../shared/interfaces';
 })
 export class ResultsPageComponent implements OnInit {
 
-  loading = false;
-  answers: Answer[] = [];
+  answers$: Observable<Answer[]>;
 
   constructor(private quizService: QuizService) { }
 
   ngOnInit() {
-    this.loading = true;
-    this.quizService.fetch().subscribe(answers => {
-      this.loading = false;
-      this.answers = answers;
-      console.log('Answers: ', answers);
-    });
+    this.answers$ = this.quizService.fetch();
   }
 
 }
