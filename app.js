@@ -7,6 +7,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const app = express();
 const authRoutes = require('./routes/auth');
+const usersRoutes = require('./routes/users');
 const answersRoutes = require('./routes/answers');
 const quizRoutes = require('./routes/quiz');
 const mongoUri = process.env.MONGO_URI;
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/users', usersRoutes);
 app.use('/api/answers', answersRoutes);
 app.use('/api/quiz', quizRoutes);
 

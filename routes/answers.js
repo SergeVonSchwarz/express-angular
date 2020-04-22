@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/answers')
 
-router.get('/', controller.answers);
+//router.get('/', controller.answers);
+router.get('/', controller.moreAnswers);
 router.get('/:userId', controller.getAnswersById);
 router.post('/', controller.create);
 router.patch('/:id', controller.update);

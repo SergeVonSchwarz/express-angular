@@ -11,14 +11,14 @@
       <li
         *ngFor="let answer of answers"
       >
-        {{answer.answers}}
+        {{answer.user}} - {{answer.answers}}
       </li>
     </ul>
   </div>
 </div>
 
 <ng-template #loader>
-  <app-loader ></app-loader>
+  <app-loader></app-loader>
 </ng-template>
 
 <ng-template #empty>

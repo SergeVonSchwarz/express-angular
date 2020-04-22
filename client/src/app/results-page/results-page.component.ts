@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {QuizService} from '../shared/services/quiz.service';
-import {Answer} from '../shared/interfaces';
+import {Answer, User} from '../shared/interfaces';
 import {Observable} from 'rxjs/index';
 
 @Component({
@@ -11,6 +11,8 @@ import {Observable} from 'rxjs/index';
 export class ResultsPageComponent implements OnInit {
 
   answers$: Observable<Answer[]>;
+  /*users$: Observable<User[]>;
+  data: any;*/
 
   constructor(private quizService: QuizService) { }
 

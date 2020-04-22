@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Answer} from '../interfaces';
+import {Answer, User} from '../interfaces';
 import {Observable} from 'rxjs/index';
 
 @Injectable({
@@ -11,6 +11,10 @@ export class QuizService {
 
   fetch(): Observable<any> {
     return this.http.get<Answer[]>('/api/answers');
+  }
+
+  allUsers(): Observable<any> {
+    return this.http.get<User[]>('/api/users');
   }
 
 }

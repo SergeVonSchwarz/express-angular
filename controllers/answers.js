@@ -1,10 +1,33 @@
 const Answers = require('../models/Answers');
+const User = require('../models/User');
 const errorHandler = require('../utils/errorHandler');
 
 module.exports.answers = async (req, res) => {
     try {
         const allAnswers = await Answers.find();
         res.status(200).json(allAnswers);
+    } catch (err) {
+        errorHandler(res, err);
+    }
+}
+
+module.exports.moreAnswers = async (req, res) => {
+    try {
+        const allAnswers = await Answers.find();
+
+        /****/
+        const allUsers = await User.find();
+        const fullData = allAnswers.map((answer) => {
+            let user = allUsers.find((item) => String(item._id) === String(answer.user));
+            return {
+                answers: answer.answers,
+                user: user.email
+            }
+        });
+        /****/
+
+        //res.status(200).json(allAnswers);
+        res.status(200).json(fullData);
     } catch (err) {
         errorHandler(res, err);
     }
