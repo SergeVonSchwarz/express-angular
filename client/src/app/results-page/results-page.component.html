@@ -1,3 +1,4 @@
+
 <div
   class="row"
   *ngIf="answers$ | async as answers; else loader"
@@ -11,11 +12,12 @@
       <li
         *ngFor="let answer of answers"
       >
-        {{answer.user}} - {{answer.answers}}
+        {{answer.userInfo[0].email}} - {{answer.answers}}
       </li>
     </ul>
   </div>
 </div>
+
 
 <ng-template #loader>
   <app-loader></app-loader>

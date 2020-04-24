@@ -4,30 +4,18 @@ const errorHandler = require('../utils/errorHandler');
 
 module.exports.answers = async (req, res) => {
     try {
-        const allAnswers = await Answers.find();
-        res.status(200).json(allAnswers);
-    } catch (err) {
-        errorHandler(res, err);
-    }
-}
-
-module.exports.moreAnswers = async (req, res) => {
-    try {
-        const allAnswers = await Answers.find();
-
-        /****/
-        const allUsers = await User.find();
-        const fullData = allAnswers.map((answer) => {
-            let user = allUsers.find((item) => String(item._id) === String(answer.user));
-            return {
-                answers: answer.answers,
-                user: user.email
+        const fullAnswers = await Answers.aggregate([
+            {
+                $lookup:
+                    {
+                        from: "users",
+                        localField: "user",
+                        foreignField: "_id",
+                        as: "userInfo"
+                    }
             }
-        });
-        /****/
-
-        //res.status(200).json(allAnswers);
-        res.status(200).json(fullData);
+        ]);
+        res.status(200).json(fullAnswers);
     } catch (err) {
         errorHandler(res, err);
     }
@@ -39,7 +27,7 @@ module.exports.getAnswersById = async (req, res) => {
             user: req.params.userId
         });
         res.status(200).json(answers);
-    } catch(err) {
+    } catch (err) {
         errorHandler(res, err);
     }
 }
@@ -52,7 +40,7 @@ module.exports.create = async (req, res) => {
         }).save();
         res.status(201).json(createAanswers);
 
-    } catch(err) {
+    } catch (err) {
         errorHandler(res, err);
     }
 }
@@ -60,13 +48,13 @@ module.exports.create = async (req, res) => {
 module.exports.update = async (req, res) => {
     try {
         const updateAnswers = await Answers.findOneAndUpdate(
-            { _id: req.params.id },
-            { $set: req.body },
-            { new: true }
+            {_id: req.params.id},
+            {$set: req.body},
+            {new: true}
         );
         res.status(200).json(updateAnswers);
 
-    } catch(err) {
+    } catch (err) {
         errorHandler(res, err);
     }
 }
