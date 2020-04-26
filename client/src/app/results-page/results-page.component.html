@@ -8,13 +8,22 @@
     *ngIf="answers.length !== 0; else empty"
   >
     <h1>Answers</h1>
-    <ul>
-      <li
-        *ngFor="let answer of answers"
-      >
-        {{answer.userInfo[0].email}} - {{answer.answers}}
-      </li>
-    </ul>
+    <table class="centered">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th *ngFor="let index of arrForTemplate">Question {{index + 1}}</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let answer of answers">
+          <td>{{answer.userInfo[0].email}}</td>
+          <td *ngFor="let index of arrForTemplate">{{answer.answers.split(",")[index]}}</td>
+          <td>{{sum(answer.answers.split(","))}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
