@@ -11,7 +11,7 @@ import {Observable} from 'rxjs/index';
 export class ResultsPageComponent implements OnInit {
 
   answers$: Observable<Answer[]>;
-  arrForTemplate = [0,1,2,3,4,5,6,7,8,9];
+  arrForTemplate = Array.from(Array(10)).map((x, i) => i );
 
   constructor(private quizService: QuizService) { }
 

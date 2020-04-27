@@ -12,9 +12,4 @@ export class QuizService {
   fetch(): Observable<any> {
     return this.http.get<Answer[]>('/api/answers');
   }
-
-  allUsers(): Observable<any> {
-    return this.http.get<User[]>('/api/users');
-  }
-
 }

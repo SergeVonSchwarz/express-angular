@@ -18,9 +18,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let answer of answers">
-          <td>{{answer.userInfo[0].email}}</td>
-          <td *ngFor="let index of arrForTemplate">{{answer.answers.split(",")[index]}}</td>
-          <td>{{sum(answer.answers.split(","))}}</td>
+          <td>{{answer.email}}</td>
+          <td *ngFor="let index of arrForTemplate">{{answer.answers[index]}}</td>
+          <td>{{answer.total}}</td>
         </tr>
       </tbody>
     </table>

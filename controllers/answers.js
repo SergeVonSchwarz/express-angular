@@ -1,21 +1,33 @@
 const Answers = require('../models/Answers');
 const User = require('../models/User');
+const methods = require('../utils/methods');
 const errorHandler = require('../utils/errorHandler');
 
 module.exports.answers = async (req, res) => {
     try {
-        const fullAnswers = await Answers.aggregate([
+        const rawAnswers = await Answers.aggregate([
             {
                 $lookup:
                     {
-                        from: "users",
-                        localField: "user",
-                        foreignField: "_id",
-                        as: "userInfo"
+                        from: 'users',
+                        localField: 'user',
+                        foreignField: '_id',
+                        as: 'userInfo'
                     }
             }
         ]);
-        res.status(200).json(fullAnswers);
+
+        const parseAnswers = rawAnswers.map((item) => {
+            return {
+                answers: item.answers.split(',').map( Number ),
+                email: item.userInfo[0].email,
+                total: item.answers.split(',').reduce((a, b) => +a + +b, 0)
+            }
+        });
+
+        parseAnswers.sort(methods.compareTotal);
+
+        res.status(200).json(parseAnswers);
     } catch (err) {
         errorHandler(res, err);
     }
