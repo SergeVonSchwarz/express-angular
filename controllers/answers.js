@@ -17,16 +17,17 @@ module.exports.answers = async (req, res) => {
             }
         ]);
 
-        const parseAnswers = rawAnswers.map((item) => {
+        const parseAnswers = rawAnswers
+            .filter((item) => item.answers.split(',').map(Number).length === 10)
+            .map((item) => {
             return {
-                answers: item.answers.split(',').map( Number ),
+                answers: item.answers.split(',').map(Number),
                 email: item.userInfo[0].email,
                 total: item.answers.split(',').reduce((a, b) => +a + +b, 0)
             }
         });
 
         parseAnswers.sort(methods.compareTotal);
-
         res.status(200).json(parseAnswers);
     } catch (err) {
         errorHandler(res, err);
