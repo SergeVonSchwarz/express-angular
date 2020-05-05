@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import jwt_decode from 'jwt-decode';
 import {QuizService} from '../shared/services/quiz.service';
-import {Answer} from '../shared/interfaces';
-import {Observable} from 'rxjs/index';
+import {AuthService} from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-results-page',
@@ -10,16 +10,23 @@ import {Observable} from 'rxjs/index';
 })
 export class ResultsPageComponent implements OnInit {
 
-  answers$: Observable<Answer[]>;
-  arrForTemplate = Array.from(Array(10)).map((x, i) => i );
+  arrForTemplate = Array.from(Array(10)).map((x, i) => i);
+  answers: any = null;
+  loading: boolean = true;
+  getToQuiz: any = null;
+  lastAnswer: any = null;
 
-  constructor(private quizService: QuizService) { }
-
-  ngOnInit() {
-    this.answers$ = this.quizService.fetch();
+  constructor(private quizService: QuizService, private auth: AuthService) {
   }
 
-  sum(arr) {
-    return arr.reduce((sum, val) => +sum + +val);
+  ngOnInit() {
+    this.quizService.getAnswers().subscribe((res) => {
+      this.loading = false;
+      this.answers = res.filter((item) => item.answers.length === 10);
+      const userId = jwt_decode(this.auth.getToken()).userId;
+      this.lastAnswer = res.find((item) => item._id == userId);
+      this.getToQuiz = this.lastAnswer.total < 10 ? true : false;
+
+    });
   }
 }

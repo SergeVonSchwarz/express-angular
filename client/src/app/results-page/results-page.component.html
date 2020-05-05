@@ -1,36 +1,30 @@
+<app-loader *ngIf="loading"></app-loader>
 
-<div
-  class="row"
-  *ngIf="answers$ | async as answers; else loader"
->
-  <div
-    class="col s12"
-    *ngIf="answers.length !== 0; else empty"
-  >
+<div *ngIf="!loading">
+  <div class="row" *ngIf="answers; else empty">
     <h1>Answers</h1>
     <table class="centered">
       <thead>
-        <tr>
-          <th>User</th>
-          <th *ngFor="let index of arrForTemplate">Question {{index + 1}}</th>
-          <th>Total</th>
-        </tr>
+      <tr>
+        <th>User</th>
+        <th *ngFor="let index of arrForTemplate">Question {{index + 1}}</th>
+        <th>True</th>
+      </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let answer of answers">
-          <td>{{answer.email}}</td>
-          <td *ngFor="let index of arrForTemplate">{{answer.answers[index]}}</td>
-          <td>{{answer.total}}</td>
-        </tr>
+      <tr *ngFor="let answer of answers">
+        <td>{{answer.email}}</td>
+        <td *ngFor="let index of arrForTemplate">{{answer.answers[index]}}</td>
+        <td>{{answer.trueAnswers}}</td>
+      </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-
-<ng-template #loader>
-  <app-loader></app-loader>
-</ng-template>
+<h5 *ngIf="getToQuiz">
+  <a routerLink="/quiz">Go to quiz!</a>
+</h5>
 
 <ng-template #empty>
   <div class="center">No answers!</div>

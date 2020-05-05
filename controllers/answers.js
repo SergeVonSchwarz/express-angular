@@ -18,14 +18,15 @@ module.exports.answers = async (req, res) => {
         ]);
 
         const parseAnswers = rawAnswers
-            .filter((item) => item.answers.split(',').map(Number).length === 10)
             .map((item) => {
-            return {
-                answers: item.answers.split(',').map(Number),
-                email: item.userInfo[0].email,
-                total: item.answers.split(',').reduce((a, b) => +a + +b, 0)
-            }
-        });
+                return {
+                    answers: item.answers.split(',').map(Number),
+                    email: item.userInfo[0].email,
+                    _id: item.userInfo[0]._id,
+                    trueAnswers: item.answers.split(',').reduce((a, b) => +a + +b, 0),
+                    total: item.answers.split(',').map(Number).length
+                }
+            });
 
         parseAnswers.sort(methods.compareTotal);
         res.status(200).json(parseAnswers);

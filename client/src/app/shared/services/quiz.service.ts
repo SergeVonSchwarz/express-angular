@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Answer, User} from '../interfaces';
-import {Observable} from 'rxjs/index';
+import {Answer} from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,7 @@ import {Observable} from 'rxjs/index';
 export class QuizService {
   constructor(private http: HttpClient) {}
 
-  fetch(): Observable<any> {
+  getAnswers() {
     return this.http.get<Answer[]>('/api/answers');
   }
 }
